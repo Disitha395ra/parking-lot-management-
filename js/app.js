@@ -11,3 +11,22 @@ const graph = {
     G: { gate1: 854, gate2: 943, gate3: 689, A: 410, B: 275, C: 305, D: 250, E: 280, F: 420 , H: 145, H: 260, H:375 },
     H: { gate1: 623, gate2: 644, gate3: 751, A: 410, B: 275, C: 305, D: 250, E: 280, F: 420 , G: 400}
 };
+
+const initialParkingSlots = [
+    { id: 'A', capacity: 10, occupied: 0 },
+    { id: 'B', capacity: 10, occupied: 0 },
+    { id: 'C', capacity: 10, occupied: 0 },
+    { id: 'D', capacity: 10, occupied: 0 },
+    { id: 'E', capacity: 10, occupied: 0 },
+    { id: 'F', capacity: 10, occupied: 0 },
+    { id: 'G', capacity: 10, occupied: 0 },
+    { id: 'H', capacity: 10, occupied: 0 }
+];
+
+
+let parkingSlots = JSON.parse(localStorage.getItem('parkingSlots')) || initialParkingSlots;
+
+function saveParkingSlots() {
+    localStorage.setItem('parkingSlots', JSON.stringify(parkingSlots));
+}
+
