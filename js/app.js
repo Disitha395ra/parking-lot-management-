@@ -30,3 +30,23 @@ function saveParkingSlots() {
     localStorage.setItem('parkingSlots', JSON.stringify(parkingSlots));
 }
 
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    
+    const validUsername = "Admin";
+    const validPassword = "123";
+
+    if (username === validUsername && password === validPassword) {
+        
+        window.location.href = 'dashboard.html';
+    } else {
+        alert('Invalid username or password.');
+    }
+}
+
+function logout() {
+    
+    window.location.href = 'index.html';
+}
