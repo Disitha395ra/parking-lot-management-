@@ -82,6 +82,32 @@ function dijkstra(start) {
     return distances;
 }
 
+function findNearestSlot(gate) {
+    const distances = dijkstra(gate);
+    let nearestSlot = null;
+    let minDistance = Infinity;
+
+    for (const slot of parkingSlots) {
+        if (slot.occupied < slot.capacity && distances[slot.id] < minDistance) {
+            minDistance = distances[slot.id];
+            nearestSlot = slot;
+        }
+    }
+
+    const resultDiv = document.getElementById('nearestSlot');
+    const arrivalSection = document.getElementById('arrivalSection');
+    arrivalSection.innerHTML = ''; 
+    if (nearestSlot) {
+        resultDiv.innerHTML = `<h2>Nearest available slot from ${gate.toUpperCase()}:</h2>` +
+            `<p>Slot ID: ${nearestSlot.id}</p>` +
+            `<p>Distance: ${minDistance} units</p>` +
+            `<button class="arrived-button" onclick="markArrived('${nearestSlot.id}')">Arrived</button>`;
+    } else {
+        resultDiv.innerText = `No available parking slots from ${gate.toUpperCase()}`;
+    }
+}
+
+
 function markArrived(slotId) {
     const slot = parkingSlots.find(slot => slot.id === slotId);
     if (slot && slot.occupied < slot.capacity) {
