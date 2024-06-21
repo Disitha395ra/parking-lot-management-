@@ -93,3 +93,16 @@ function findNearestSlot(gate) {
             nearestSlot = slot;
         }
     }
+function markArrived(slotId) {
+    const slot = parkingSlots.find(slot => slot.id === slotId);
+    if (slot && slot.occupied < slot.capacity) {
+        slot.occupied += 1;
+        saveParkingSlots();
+        alert(`Vehicle parked at slot ${slot.id}. Occupied: ${slot.occupied}/${slot.capacity}`);
+        if (slot.occupied === slot.capacity) {
+            alert(`Slot ${slot.id} is now full.`);
+        }
+        
+        logout();
+    }
+}
