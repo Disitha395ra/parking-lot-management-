@@ -81,3 +81,15 @@ function dijkstra(start) {
     }
     return distances;
 }
+
+function findNearestSlot(gate) {
+    const distances = dijkstra(gate);
+    let nearestSlot = null;
+    let minDistance = Infinity;
+
+    for (const slot of parkingSlots) {
+        if (slot.occupied < slot.capacity && distances[slot.id] < minDistance) {
+            minDistance = distances[slot.id];
+            nearestSlot = slot;
+        }
+    }
