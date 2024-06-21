@@ -93,6 +93,9 @@ function findNearestSlot(gate) {
             nearestSlot = slot;
         }
     }
+}
+
+
 function markArrived(slotId) {
     const slot = parkingSlots.find(slot => slot.id === slotId);
     if (slot && slot.occupied < slot.capacity) {
