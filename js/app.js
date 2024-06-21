@@ -50,3 +50,34 @@ function logout() {
     
     window.location.href = 'index.html';
 }
+
+function dijkstra(start) {
+    const distances = {};
+    const visited = {};
+    const priorityQueue = [];
+
+    for (const node in graph) {
+        distances[node] = Infinity;
+    }
+    distances[start] = 0;
+    priorityQueue.push([0, start]);
+
+    while (priorityQueue.length > 0) {
+        priorityQueue.sort((a, b) => a[0] - b[0]);
+        const [currentDistance, currentNode] = priorityQueue.shift();
+
+        if (visited[currentNode]) continue;
+        visited[currentNode] = true;
+
+        for (const neighbor in graph[currentNode]) {
+            const distance = graph[currentNode][neighbor];
+            const newDistance = currentDistance + distance;
+
+            if (newDistance < distances[neighbor]) {
+                distances[neighbor] = newDistance;
+                priorityQueue.push([newDistance, neighbor]);
+            }
+        }
+    }
+    return distances;
+}
